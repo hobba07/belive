@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "112942292027",
+    "project_id": "belive-52963",
+    "storage_bucket": "belive-52963.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:112942292027:android:32015b06a6931a7828501e",
+        "android_client_info": {
+          "package_name": "com.belive365"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "112942292027-cjht4cbqds66fron0qoirtupua6i4av4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUHA1WADrW26_wQcpo_kNmowkHYwOKbrw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "112942292027-cjht4cbqds66fron0qoirtupua6i4av4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
