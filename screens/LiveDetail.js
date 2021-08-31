@@ -16,7 +16,7 @@ import LinearGradient from "react-native-linear-gradient";
 import Share from "react-native-share";
 import HorizontalImageCard from "../components/HorizontalImageCard";
 
-function LiveDetail({ route, data }) {
+function LiveDetail({ route }) {
   const detailData = route.params;
 
   const [likeimg, setLikeImg] = useState({
@@ -120,19 +120,21 @@ function LiveDetail({ route, data }) {
           dotColor={"#ffffff"}
           dotStyle={styles.simpleDots}
           activeDotStyle={styles.activeDots}>
-          <ImageBackground
-            style={styles.imageSwiper}
-            source={require("../images/image1.jpg")}
-          />
-          <ImageBackground
-            style={styles.imageSwiper}
-            source={require("../images/image2.jpg")}
-          />
-          <ImageBackground
-            style={styles.imageSwiper}
-            source={require("../images/image5.jpg")}
-          />
+          {
+            detailData.listImages.map((imge)=>{
+              return(
+                <ImageBackground
+                  style={styles.imageSwiper}
+                  source={imge}
+                />
+              );
+            })
+
+          }
+
         </Swiper>
+
+
         <View
           style={styles.details}>
           <Text
@@ -309,10 +311,10 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: "bold",
   },
-  aproposDescription:{
+  aproposDescription: {
     padding: 10,
     color: "#ffffff",
-    lineHeight:25
+    lineHeight: 25,
   },
 });
 
