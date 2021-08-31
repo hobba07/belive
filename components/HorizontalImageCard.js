@@ -15,16 +15,18 @@ function HorizontalImageCard({ props, informations, screen }) {
   const navigation = useNavigation();
 
 
-  function openBottomModal() {
+  function openBottomModal(info) {
 
     props.setVisibility(true);
-
+    props.setImageModal(info.img);
+    props.setDescModal(info.desc);
+    props.setDateModal(info.date)
 
   }
 
   function navigatoToScreen(screen, information, modal) {
     if (modal) {
-      openBottomModal();
+      openBottomModal(information);
     } else {
       navigation.navigate(screen, information);
     }

@@ -46,24 +46,29 @@ function Home() {
       img: require("../images/image5.jpg"),
       title: "Miguel martinez",
       description: "Mercredi 24/07/1996 a 00:00",
+      apropos:"iheb ben hamada iheb ben hamada iheb ben hamada iheb ben hamada iheb ben hamada"
     },
     {
       id: 1,
       img: require("../images/image6.jpg"),
       title: "Chrisian hog",
       description: "Jeudi 26/03/1996 a 23:00",
+      apropos:"iheb ben hamada iheb ben hamada iheb ben hamada iheb ben hamada iheb ben hamada"
+
     },
     {
       id: 2,
       img: require("../images/image7.jpg"),
       title: "Filip leonci",
       description: "Dimanche 12/02/1996 a 20:00",
+      apropos:"iheb ben hamada iheb ben hamada iheb ben hamada iheb ben hamada iheb ben hamada"
     },
     {
       id: 3,
       img: require("../images/image8.jpg"),
       title: "Wiili martinez",
       description: "Lundi 01/07/1998 a 00:00",
+      apropos:"Wassim hamdaoui Wassim hamdaoui Wassim hamdaoui Wassim hamdaoui Wassim hamdaoui Wassim hamdaoui Wassim hamdaoui"
     },
   ];
 
@@ -72,21 +77,29 @@ function Home() {
       id: 0,
       img: require("../images/image9.jpg"),
       title: "Mike jackson",
+      desc:"iheb ben hamada iheb ben hamada iheb ben hamada iheb ben hamada iheb ben hamada.",
+      date:"Mardi 24/07/1996"
     },
     {
       id: 1,
       img: require("../images/image4.jpg"),
       title: "Kiven derik",
+      desc:"iheb ben hamada iheb ben hamada iheb ben hamada iheb ben hamada iheb ben hamada.",
+      date:"Mardi 24/07/1996"
     },
     {
       id: 2,
       img: require("../images/image7.jpg"),
       title: "Chris perces",
+      desc:"iheb ben hamada iheb ben hamada iheb ben hamada iheb ben hamada iheb ben hamada.",
+      date:"Mardi 24/07/1996"
     },
     {
       id: 3,
       img: require("../images/image9.jpg"),
       title: "Jandriic nic",
+      desc:"iheb ben hamada iheb ben hamada iheb ben hamada iheb ben hamada iheb ben hamada.",
+      date:"Mardi 24/07/1996"
     },
   ];
 
@@ -137,6 +150,9 @@ function Home() {
   ];
 
   const [isModalVisible, setModalVisible] = useState(false);
+  const [imageModal, setimageModal] = useState();
+  const [descriptionModal, setdescriptionModal] = useState();
+  const [dateModal, setdateModal] = useState();
 
   return (
     <LinearGradient
@@ -155,7 +171,7 @@ function Home() {
               colors={["#21224A", "#21224A", "#21224A", "#21224A", "#321036"]}
               style={styles.modalLinearGradient}>
               <ImageBackground
-                source={require('../images/image9.jpg')}
+                source={imageModal}
                 imageStyle={styles.modalImageBorder}
                 style={{height:200,marginBottom:20}}
               >
@@ -164,13 +180,11 @@ function Home() {
                 <Image style={{marginRight:20}} source={require('../images/heart.svg')}/>
                 <Text style={styles.modalTitle}>Informations</Text>
               </View>
-              <Text style={styles.modalDescription}>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. the printing and typesetting industry.
+              <Text style={styles.modalDescription}>{descriptionModal}
               </Text>
 
               <Text style={styles.modalDate}>
-                Vendredi 20 Avril 2022
+                {dateModal}
               </Text>
               <TouchableOpacity
                 style={styles.modalClose}
@@ -218,6 +232,9 @@ function Home() {
             height: 200,
             modal: true,
             setVisibility: setModalVisible,
+            setImageModal: setimageModal,
+            setDescModal:setdescriptionModal,
+            setDateModal:setdateModal
           }}
           informations={listProchainelive}
           screen={"signup"}

@@ -158,8 +158,7 @@ function detailBientoLive({route}) {
         A propos de cet article
       </Text>
       <Text style={styles.aproposText}>
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry.
+        {detailData.apropos}
       </Text>
     </LinearGradient>
   );
