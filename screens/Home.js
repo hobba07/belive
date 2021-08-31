@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -13,7 +13,6 @@ import {
 
 import LinearGradient from "react-native-linear-gradient";
 import HorizontalImageCard from "../components/HorizontalImageCard";
-import RBSheet from "react-native-raw-bottom-sheet";
 import Modal from "react-native-modal";
 
 function Home() {
@@ -154,36 +153,27 @@ function Home() {
             style={styles.modalView}>
             <LinearGradient
               colors={["#21224A", "#21224A", "#21224A", "#21224A", "#321036"]}
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "flex-start",
-                height:'100%',
-                borderTopRightRadius:20,
-                borderTopLeftRadius:20,
-                position:"relative"
-              }}>
+              style={styles.modalLinearGradient}>
               <ImageBackground
                 source={require('../images/image9.jpg')}
-                imageStyle={{borderTopLeftRadius:20,borderTopRightRadius:20,}}
+                imageStyle={styles.modalImageBorder}
                 style={{height:200,marginBottom:20}}
               >
-
               </ImageBackground>
-              <View style={{display:"flex",flexDirection:"row",marginLeft:30,alignItems:"center",marginBottom:20}}>
+              <View style={styles.modalHead}>
                 <Image style={{marginRight:20}} source={require('../images/heart.svg')}/>
-                <Text style={{color:"#ffffff",fontSize:18,fontWeight:"bold"}}>Informations</Text>
+                <Text style={styles.modalTitle}>Informations</Text>
               </View>
-              <Text style={{paddingLeft:30,color:"#ffffff",fontWeight:"bold",fontSize:16,lineHeight: 30,paddingRight:20}}>
+              <Text style={styles.modalDescription}>
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. the printing and typesetting industry.
               </Text>
 
-              <Text style={{paddingLeft:30,color:"#ffffff",fontWeight:"bold",fontSize:16,marginTop:30}}>
+              <Text style={styles.modalDate}>
                 Vendredi 20 Avril 2022
               </Text>
               <TouchableOpacity
-                style={{position:"absolute",top:0,right:0,padding:20}}
+                style={styles.modalClose}
                 key={"568"}
                 onPress={() => {
                   setModalVisible(false);
@@ -278,6 +268,7 @@ const styles = StyleSheet.create({
     backgroundColor: "red",
     marginLeft: 15,
     marginBottom: 30,
+    borderRadius:10
   },
   textLive: {
     color: "#ffffff",
@@ -308,5 +299,51 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
+  },
+  modalLinearGradient:{
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    height:'100%',
+    borderTopRightRadius:20,
+    borderTopLeftRadius:20,
+    position:"relative"
+  },
+  modalHead:{
+    display:"flex",
+    flexDirection:"row",
+    marginLeft:30,
+    alignItems:"center",
+    marginBottom:20
+  },
+  modalImageBorder:{
+    borderTopLeftRadius:20,
+    borderTopRightRadius:20,
+  },
+  modalDescription:{
+    paddingLeft:30,
+    color:"#ffffff",
+    fontWeight:"bold",
+    fontSize:16,
+    lineHeight: 30,
+    paddingRight:20
+  },
+  modalTitle:{
+    color:"#ffffff",
+    fontSize:18,
+    fontWeight:"bold"
+  },
+  modalDate:{
+    paddingLeft:30,
+    color:"#ffffff",
+    fontWeight:"bold",
+    fontSize:16,
+    marginTop:30
+  },
+  modalClose:{
+    position:"absolute",
+    top:0,
+    right:0,
+    padding:20
   },
 });

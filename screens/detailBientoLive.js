@@ -8,7 +8,6 @@ import {
   Text,
   Image,
   TouchableOpacity,
-  Button,
 } from 'react-native';
 import Modal from 'react-native-modal';
 import LinearGradient from 'react-native-linear-gradient';
@@ -23,7 +22,7 @@ function detailBientoLive({route}) {
   const myCustomShare = async () => {
     const shareOptions = {
       message:
-        "Order your next meal from FoodFinder App. I've already ordered more than 10 meals on it.",
+        "Music band ...",
       // urls: [files.image1, files.image2]
     };
 
@@ -64,44 +63,18 @@ function detailBientoLive({route}) {
       <StatusBar translucent backgroundColor="transparent" />
       <Modal
         isVisible={isModalVisible}
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          position: 'absolute',
-          top: 0,
-          justifyContent: 'center',
-          padding: 20,
-          margin: 0,
-        }}
+        style={styles.modalContainer}
         animationIn={'slideInDown'}
         animationOut={'slideOutUp'}>
         <View
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            width: Dimensions.get('window').width - 40,
-            padding: 10,
-            margin: 0,
-            height: 80,
-            flexDirection: 'row',
-            backgroundColor: '#ffffff',
-            borderRadius: 20,
-            paddingLeft: 20,
-            paddingRight: 20,
-          }}>
+          style={styles.modalWrapper}>
           <View
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'flex-start',
-            }}>
+            style={styles.modalInfo}>
             <Image
               style={{marginRight: 20}}
               source={require('../images/checked.png')}
             />
-            <Text style={{fontWeight: 'bold'}}>
+            <Text style={styles.modalText}>
               Live épinglé dans vos favoris{' '}
             </Text>
           </View>
@@ -115,40 +88,25 @@ function detailBientoLive({route}) {
         </View>
       </Modal>
       <ImageBackground
-        style={{
-          height: 200,
-          width: Dimensions.get('window').width,
-          position: 'relative',
-        }}
+        style={styles.headerImage}
         source={detailData.img}>
         <LinearGradient
           colors={['#906C7F80', '#3B223E80', '#21224A']}
-          style={{
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-          }}
+          style={styles.headerGradient}
         />
       </ImageBackground>
       <View
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'flex-start',
-          justifyContent: 'space-between',
-          padding: 10,
-          marginBottom: 20,
-        }}>
+        style={styles.headerDetail}>
         <View>
           <Text
-            style={{marginBottom: 10, fontWeight: 'bold', color: '#ffffff'}}>
+            style={styles.livesTitle}>
             {detailData.title}
           </Text>
           <Text style={{width: '70%', color: '#ffffff'}}>
             {detailData.description}
           </Text>
         </View>
-        <View style={{display: 'flex', flexDirection: 'row'}}>
+        <View style={styles.iconsContainer}>
           <TouchableOpacity onPress={like}>
             <Image style={{marginRight: 20}} source={likeimg.img} />
           </TouchableOpacity>
@@ -169,42 +127,37 @@ function detailBientoLive({route}) {
         </View>
       </View>
       <Text
-        style={{
-          color: '#9DA5AD',
-          marginLeft: 10,
-          fontSize: 12,
-          marginBottom: 10,
-        }}>
+        style={styles.chooseTitle}>
         Choisissez une option de réservation
       </Text>
       <View style={styles.optreservation}>
-        <Text style={{fontWeight: 'bold', color: '#ffffff'}}>
+        <Text style={styles.optreservationText}>
           Assister au concert
         </Text>
         <Image style source={require('../images/info.svg')} />
       </View>
       <View style={styles.optreservation}>
-        <Text style={{fontWeight: 'bold', color: '#ffffff'}}>
+        <Text style={styles.optreservationText}>
           Visionner le live gratuitement{' '}
         </Text>
         <Image style source={require('../images/info.svg')} />
       </View>
       <View style={styles.optreservation}>
-        <Text style={{fontWeight: 'bold', color: '#ffffff'}}>
+        <Text style={styles.optreservationText}>
           Visionner le live en mode VIP
         </Text>
         <Image style source={require('../images/info.svg')} />
       </View>
       <View style={styles.optreservation}>
-        <Text style={{fontWeight: 'bold', color: '#ffffff'}}>
+        <Text style={styles.optreservationText}>
           Visionner entre amis
         </Text>
         <Image style source={require('../images/info.svg')} />
       </View>
-      <Text style={{margin: 10, marginTop: 20, color: '#9DA5AD', fontSize: 12}}>
+      <Text style={[styles.chooseTitle,{marginTop:30}]}>
         A propos de cet article
       </Text>
-      <Text style={{marginLeft: 10, color: '#ffffff'}}>
+      <Text style={styles.aproposText}>
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry.
       </Text>
@@ -228,5 +181,86 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     paddingBottom: 20,
   },
+  modalContainer:{
+    display: 'flex',
+    flexDirection: 'row',
+    position: 'absolute',
+    top: 0,
+    justifyContent: 'center',
+    padding: 20,
+    margin: 0,
+  },
+  modalWrapper:{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: Dimensions.get('window').width - 40,
+    padding: 10,
+    margin: 0,
+    height: 80,
+    flexDirection: 'row',
+    backgroundColor: '#ffffff',
+    borderRadius: 20,
+    paddingLeft: 20,
+    paddingRight: 20,
+  },
+  modalInfo:{
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
+  modalText: {
+    fontWeight: 'bold'
+  },
+  headerImage:{
+    height: 200,
+    width: Dimensions.get('window').width,
+    position: 'relative',
+  },
+  headerGradient:{
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+  },
+  headerDetail:{
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    padding: 10,
+    marginBottom: 20,
+  },
+  iconsContainer:{
+    display: 'flex',
+    flexDirection: 'row'
+  },
+  liveTitle:{
+    marginBottom: 10,
+    fontWeight: 'bold',
+    color: '#ffffff'
+  },
+  chooseTitle:{
+    color: '#9DA5AD',
+    marginLeft: 10,
+    fontSize: 12,
+    marginBottom: 10,
+  },
+  optreservationText:{
+    fontWeight: 'bold',
+    color: '#ffffff'
+  },
+  aproposText:{
+    marginLeft: 10,
+    color: '#ffffff',
+    lineHeight:25
+  },
+  livesTitle:{
+    marginBottom: 10,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    width: '50%',
+    fontSize: 16,
+  }
 });
 export default detailBientoLive;

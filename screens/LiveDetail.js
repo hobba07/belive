@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import Swiper from 'react-native-swiper';
+import React, { useState } from "react";
+import Swiper from "react-native-swiper";
 import {
   StyleSheet,
   Text,
@@ -10,17 +10,17 @@ import {
   ImageBackground,
   TouchableOpacity,
   Image,
-} from 'react-native';
-import Modal from 'react-native-modal';
-import LinearGradient from 'react-native-linear-gradient';
-import Share from 'react-native-share';
-import HorizontalImageCard from '../components/HorizontalImageCard';
+} from "react-native";
+import Modal from "react-native-modal";
+import LinearGradient from "react-native-linear-gradient";
+import Share from "react-native-share";
+import HorizontalImageCard from "../components/HorizontalImageCard";
 
-function LiveDetail({route,data}) {
+function LiveDetail({ route, data }) {
   const detailData = route.params;
 
   const [likeimg, setLikeImg] = useState({
-    img: require('../images/heart.svg'),
+    img: require("../images/heart.svg"),
     isLiked: false,
   });
   const myCustomShare = async () => {
@@ -34,14 +34,14 @@ function LiveDetail({route,data}) {
       const ShareResponse = await Share.open(shareOptions);
       console.log(JSON.stringify(ShareResponse));
     } catch (error) {
-      console.log('Error => ', error);
+      console.log("Error => ", error);
     }
   };
   const [isModalVisible, setModalVisible] = useState(false);
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
-    setTimeout(function () {
+    setTimeout(function() {
       setModalVisible(false);
     }, 2000);
   };
@@ -49,13 +49,13 @@ function LiveDetail({route,data}) {
   const like = () => {
     if (likeimg.isLiked == false) {
       setLikeImg({
-        img: require('../images/heart_pink.svg'),
+        img: require("../images/heart_pink.svg"),
         isLiked: true,
       });
       toggleModal();
     } else {
       setLikeImg({
-        img: require('../images/heart.svg'),
+        img: require("../images/heart.svg"),
         isLiked: false,
       });
     }
@@ -63,163 +63,119 @@ function LiveDetail({route,data}) {
   const listCamera = [
     {
       id: 0,
-      img: require('../images/image4.jpg'),
-      title: 'Khabi martinez',
+      img: require("../images/image4.jpg"),
+      title: "Khabi martinez",
     },
     {
       id: 1,
-      img: require('../images/image5.jpg'),
-      title: 'Cristiano',
+      img: require("../images/image5.jpg"),
+      title: "Cristiano",
     },
     {
       id: 2,
-      img: require('../images/image1.jpg'),
-      title: 'Christian',
+      img: require("../images/image1.jpg"),
+      title: "Christian",
     },
     {
       id: 3,
-      img: require('../images/image2.jpg'),
-      title: 'Joseph',
+      img: require("../images/image2.jpg"),
+      title: "Joseph",
     },
   ];
   return (
     <LinearGradient
-      colors={['#21224A', '#21224A', '#21224A', '#321036', '#321036']}
+      colors={["#21224A", "#21224A", "#21224A", "#321036", "#321036"]}
       style={styles.container}>
       <StatusBar translucent backgroundColor="transparent" />
       <ScrollView>
         <Modal
           isVisible={isModalVisible}
           style={styles.modalContainer}
-          animationIn={'slideInDown'}
-          animationOut={'slideOutUp'}>
+          animationIn={"slideInDown"}
+          animationOut={"slideOutUp"}>
           <View
-            style={styles.modalView}>
+            style={styles.modalWrapper}>
             <View
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-              }}>
+              style={styles.modalInfo}>
               <Image
-                style={{marginRight: 20}}
-                source={require('../images/checked.png')}
+                style={{ marginRight: 20 }}
+                source={require("../images/checked.png")}
               />
-              <Text style={{fontWeight: 'bold'}}>
-                Live épinglé dans vos favoris{' '}
+              <Text style={styles.modalText}>
+                Live épinglé dans vos favoris
               </Text>
             </View>
             <TouchableOpacity
-              key={'568'}
+              key={"568"}
               onPress={() => {
                 setModalVisible(false);
               }}>
-              <Image source={require('../images/close.svg')} />
+              <Image source={require("../images/close.svg")} />
             </TouchableOpacity>
           </View>
         </Modal>
         <Swiper
           style={styles.imgSwiper}
           showsButtons={false}
-          dotColor={'#ffffff'}
-          dotStyle={{width: 10, height: 10, borderRadius: 10}}
-          activeDotStyle={{
-            backgroundColor: '#000000',
-            borderWidth: 2,
-            borderColor: '#ffffff',
-            width: 10,
-            height: 10,
-            borderRadius: 10,
-          }}>
+          dotColor={"#ffffff"}
+          dotStyle={styles.simpleDots}
+          activeDotStyle={styles.activeDots}>
           <ImageBackground
-            style={{height: 200, width: '100%'}}
-            source={require('../images/image1.jpg')}
+            style={styles.imageSwiper}
+            source={require("../images/image1.jpg")}
           />
           <ImageBackground
-            style={{height: 200, width: '100%'}}
-            source={require('../images/image2.jpg')}
+            style={styles.imageSwiper}
+            source={require("../images/image2.jpg")}
           />
           <ImageBackground
-            style={{height: 200, width: '100%'}}
-            source={require('../images/image5.jpg')}
+            style={styles.imageSwiper}
+            source={require("../images/image5.jpg")}
           />
         </Swiper>
         <View
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'flex-start',
-            justifyContent: 'space-between',
-            padding: 10,
-            marginBottom: 20,
-            width: '100%',
-          }}>
+          style={styles.details}>
           <Text
-            style={{
-              marginBottom: 10,
-              fontWeight: 'bold',
-              color: '#ffffff',
-              width: '50%',
-              fontSize: 16,
-            }}>
+            style={styles.liveTitle}>
             {detailData.titleLive}
           </Text>
 
-          <View style={{display: 'flex', flexDirection: 'row'}}>
+          <View style={styles.actionContainer}>
             <TouchableOpacity onPress={like}>
-              <Image style={{marginRight: 20}} source={likeimg.img} />
+              <Image style={{ marginRight: 20 }} source={likeimg.img} />
             </TouchableOpacity>
 
             <TouchableOpacity onPress={myCustomShare}>
-              <Image source={require('../images/share.svg')} />
+              <Image source={require("../images/share.svg")} />
             </TouchableOpacity>
           </View>
         </View>
-        <View style={{display: 'flex', flexDirection: 'row', marginLeft: 10}}>
-          <Text style={{color: '#ffffff', fontWeight: 'bold'}}>En live</Text>
+        <View style={{ display: "flex", flexDirection: "row", marginLeft: 10 }}>
+          <Text style={styles.textEnLive}>En live</Text>
           <View
-            style={{
-              width: 3,
-              height: 3,
-              backgroundColor: 'red',
-              marginLeft: 15,
-              marginBottom: 30,
-            }}
+            style={styles.enLiveDot}
           />
         </View>
         <HorizontalImageCard
           props={{
-            width: Dimensions.get('window').width * 0.45,
-            height: Dimensions.get('window').width * 0.45,
-            title: 'Hobba',
+            width: Dimensions.get("window").width * 0.45,
+            height: Dimensions.get("window").width * 0.45,
+            title: "Hobba",
           }}
           informations={listCamera}
-          screen={'signup'}
+          screen={"signup"}
         />
 
         <Text
-          style={{
-            margin: 10,
-            marginTop: 20,
-            color: '#ffffff',
-            fontSize: 12,
-            fontWeight: 'bold',
-          }}>
+          style={styles.aproposTitle}>
           A propos de cet évennement
         </Text>
-        <Text style={{padding: 10, color: '#ffffff'}}>
+        <Text style={styles.aproposDescription}>
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. of the printing and typesetting industry.
         </Text>
         <Text
-          style={{
-            margin: 10,
-            marginTop: 20,
-            color: '#ffffff',
-            fontSize: 12,
-            fontWeight: 'bold',
-          }}>
+          style={styles.aproposTitle}>
           A propos de l'artiste
         </Text>
 
@@ -227,66 +183,137 @@ function LiveDetail({route,data}) {
           props={{
             width: 120,
             height: 120,
-            title: 'Hobba',
+            title: "Hobba",
           }}
-          informations={[{id: 0, img: require('../images/image1.jpg')}]}
-          screen={'signup'}
+          informations={[{ id: 0, img: require("../images/image1.jpg") }]}
+          screen={"signup"}
         />
       </ScrollView>
     </LinearGradient>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
+    justifyContent: "flex-start",
   },
   imgSwiper: {
     height: 200,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#9DD6EB',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#9DD6EB",
   },
   slide2: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#97CAE5',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#97CAE5",
   },
   slide3: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#92BBD9',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#92BBD9",
   },
   text: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 30,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
-  modalContainer:{
-    flex: 1,
-    flexDirection: 'row',
-    position: 'absolute',
+  modalContainer: {
+    display: "flex",
+    flexDirection: "row",
+    position: "absolute",
     top: 0,
-    justifyContent: 'center',
+    justifyContent: "center",
     padding: 20,
     margin: 0,
   },
-  modalView:{
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: Dimensions.get('window').width - 40,
+  modalWrapper: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: Dimensions.get("window").width - 40,
     padding: 10,
     margin: 0,
     height: 80,
-    flexDirection: 'row',
-    backgroundColor: '#ffffff',
+    flexDirection: "row",
+    backgroundColor: "#ffffff",
     borderRadius: 20,
     paddingLeft: 20,
     paddingRight: 20,
-  }
+  },
+  modalInfo: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
+  },
+  modalText: {
+    fontWeight: "bold",
+  },
+  activeDots: {
+    backgroundColor: "#000000",
+    borderWidth: 2,
+    borderColor: "#ffffff",
+    width: 10,
+    height: 10,
+    borderRadius: 10,
+  },
+  simpleDots: {
+    width: 10,
+    height: 10,
+    borderRadius: 10,
+  },
+  imageSwiper: {
+    height: 200,
+    width: "100%",
+  },
+  details: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "flex-start",
+    justifyContent: "space-between",
+    padding: 10,
+    marginBottom: 20,
+    width: "100%",
+  },
+  liveTitle: {
+    marginBottom: 10,
+    fontWeight: "bold",
+    color: "#ffffff",
+    width: "50%",
+    fontSize: 16,
+  },
+  actionContainer: {
+    display: "flex",
+    flexDirection: "row",
+  },
+  textEnLive: {
+    color: "#ffffff",
+    fontWeight: "bold",
+  },
+  enLiveDot: {
+    width: 3,
+    height: 3,
+    backgroundColor: "red",
+    marginLeft: 15,
+    marginBottom: 30,
+    borderRadius: 10,
+  },
+  aproposTitle: {
+    margin: 10,
+    marginTop: 20,
+    color: "#ffffff",
+    fontSize: 12,
+    fontWeight: "bold",
+  },
+  aproposDescription:{
+    padding: 10,
+    color: "#ffffff",
+    lineHeight:25
+  },
 });
 
 export default LiveDetail;

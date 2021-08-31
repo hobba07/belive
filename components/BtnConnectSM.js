@@ -17,7 +17,7 @@ export default class SMConnect extends Component {
           <TouchableOpacity
             onPress={this.props.onPress}
             style={styles.toConnectSM}>
-            <Image style={{marginLeft:20,marginRight:20}}  source={this.props.icon}/>
+            <Image style={styles.icon}  source={this.props.icon}/>
             <Text style={{ color: this.props.textColor, fontSize: this.props.textSize ,fontWeight:"bold"}}>{this.props.text}</Text>
 
           </TouchableOpacity>
@@ -63,7 +63,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-  }
+  },
+  icon:{
+    marginLeft:20,
+    marginRight:20
+  },
 });
 SMConnect.propTypes = {
   text: PropTypes.string,

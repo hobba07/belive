@@ -36,7 +36,7 @@ function SignUp({ navigation }) {
 
     <LinearGradient colors={["#21224A", "#21224A", "#21224A", "#321036", "#321036"]} style={styles.container}>
       <StatusBar translucent backgroundColor="transparent" />
-      <Image style={{ width: "50%", height: 80, resizeMode: "contain", marginTop: 50 }}
+      <Image style={styles.logo}
              source={require("../images/logo.png")} />
       <Text style={styles.subtitle}>Lance du live prés de chez vous</Text>
       <PhoneInput
@@ -77,20 +77,12 @@ function SignUp({ navigation }) {
         </TouchableOpacity>
       </LinearGradient>
 
-      <View style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        width: "100%",
-        flexDirection: "row",
-        marginTop: 40,
-        marginBottom: 20,
-      }}>
-        <View style={{ width: "44%", height: 1, backgroundColor: "#81798F" }}>
+      <View style={styles.separate}>
+        <View style={styles.separateLine}>
 
         </View>
         <Text style={{ color: "#81798F" }}>ou</Text>
-        <View style={{ width: "44%", height: 1, backgroundColor: "#81798F" }}>
+        <View style={styles.separateLine}>
 
         </View>
       </View>
@@ -210,4 +202,25 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  logo:{
+    width: "50%",
+    height: 80,
+    resizeMode: "contain",
+    marginTop: 50
+  },
+  separate:{
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: "100%",
+    flexDirection: "row",
+    marginTop: 40,
+    marginBottom: 20,
+  },
+  separateLine:{
+    width: "44%",
+    height: 1,
+    backgroundColor: "#81798F"
+  },
+
 });
